@@ -344,9 +344,9 @@ add가 실제 참조하는 두 수를 더하는 함수의 이름은 없어. 이�
 
 : 계~속해서 이야기하고 있듯이 자바스크립트에서 함수 역시 객체야. 이것은 함수 역시 일반적인 객체의 기능에 추가로 호출했을 때 정의된 코드를 실행하는 기능을 가졌다는거구 또한, 일반 객체와는 다르게 추가로 함수 객체만의 표준 프로퍼티가 있다는거야.
 
-*name : 함수의 이름
-*caller : 자신을 호출한 함수
-*arguments : 함수를 호출할 때 전달된 인자값
-*Prototype : Function.prototype ( 모든 함수들의 부모 객체는 Function Prototype객체고 Function Prototype의 부모 객체는 Object.prototype객체야! )
-*length : 함수가 정상적으로 실행될 때 기대되는 인자의 개수
-*prototye : 위의 Prototype 프로퍼티랑은 다른거구 이 함수가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모역할을 하는 프로토타입 객체를 가리키구 그 녀석은 constructor 프로퍼티만 가지고 있어.
+* name : 함수의 이름
+* caller : 자신을 호출한 함수
+* arguments : 함수를 호출할 때 전달된 인자값
+* Prototype : Function.prototype ( 모든 함수들의 부모 객체는 Function Prototype객체고 Function Prototype의 부모 객체는 Object.prototype객체야! )
+* length : 함수가 정상적으로 실행될 때 기대되는 인자의 개수
+* prototye : 위의 Prototype 프로퍼티랑은 다른거구 이 함수가 생성자로 사용될 때 이 함수를 통해 생성된 객체의 부모역할을 하는 프로토타입 객체를 가리키구 그 녀석은 constructor 프로퍼티만 가지고 있어.
