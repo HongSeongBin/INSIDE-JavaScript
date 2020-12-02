@@ -258,3 +258,25 @@ func();
 그래서 이렇게 스코프 체인이 만들어지면 이를 바탕으로 식별자 인식을 하는거야. 스코프 체인의 첫번째 변수 객체부터 찾아서 없으면 다음 객체로 이동하면서 찾는거지!!
 (참고로 this는 식별자가 아닌 키워드로 분류되기에 스코프체인의 참조 없이 접근할 수 있어!)
 
+<br/>
+
+
+
+### 클로저
+
+
+
+#### 클로저의 개념
+
+: 간단하게 얘기하자면 이미 생명 주기가 끝난 외부 함수의 변수를 참조하는 함수라고 생각하면 돼. 그리고 클로저로 참조되는 외부 변수를 자유 변수(free variable)이라고 해.
+```javascript
+function outerFunc(arg1, arg2){
+  var local = 8;
+  function innerFunc(innerArg){
+    console.log((arg1+arg2)/(innerArg+local));
+  }
+}
+var exam1 = outerFunc(2,4);
+exam1(2);
+```
+위 코드를 보자. 여기서 outerFunc()가 실행되면서 생성되는 변수 객체가 스코프 체인에 들어가게 되고, 이 스코프 체인은 innerFunc의 스코프 체인으로 참조되겠지. 그렇기에 outerFunc()함수가 종료되었찌만, 여전히 내부함수 innerFunc의 scope로 참조되므로 garbage collection의 대상이 되지 않고 접근가능하게 살아있을 수 있는거야. 그렇기에 exam1(n)을 호출하여 innerFunc()에서 변수 local에 참조가 가능한거지. 클로저는 이렇게 
