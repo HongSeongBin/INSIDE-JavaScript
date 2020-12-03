@@ -369,4 +369,72 @@ jQuery에서는 jQuery.cache라는 것을 제공해준다니 나중에 한번 �
 
 #### 피보나치 수열
 
-:
+: 이것도 아까 합을 구할 때랑 비슷한 느낌인데 거기에다 메모이제이션 개념을 추가했네. 코드 한번 봐봐
+```javascript
+var cacher = function(cache,func){
+    var calculate = function(n){
+        if(typeof(cache[n]) === 'number'){
+            result = cache[n];
+        }else{
+            result = cache[n] = func(calculate,n);
+        }
+        
+    return result;
+};
+
+var fact = cacher({'0':1}, function(func,n){
+    return n*func(n-1);
+});
+
+var fibo = cacher({'0':0, '1':1}, function(func,n){
+    return func(n-1)+func(n-2);
+});
+
+console.log(fact(10));
+console.log(fibo(10));
+```
+이렇게 해놓으니까 그때그때 끼워맞추기 좋네. 왜 모듈화가 한단계 높다는지는 알겠는데 아직 너무 어색한 느낌이고 눈에 바로 안들어오네... ㅠㅠ
+
+<br/>
+
+
+
+### 자바스크립트에서의 함수형 프로그래밍을 활용한 주요 함수
+<br/>
+
+#### 함수 적용
+
+: 앞에서 Function.prototype.apply 함수로 함수호출 하는거 했지? 이것도 왜 apply냐 함수형 프로그래밍에서는 특정 데이터를 여러 가지 함수를 적용시키는 방식으로 작업을 수행하는데 이때 함수는 단순히 입력을 넣고 출력을 받는 기능을 수행하는 것 뿐 아니라, 인자 혹은 반환값으로 전달된 함수를 특정 데이터에 적용시키는 개념이야. 그래서 적용한다는 느낌을 따와서 apply라넹
+
+<br/>
+
+
+
+#### 커링
+
+: 커링이란 특정함수에서 정의된 인자의 일부를 고정시키고, 나머지를 인자로 받는 새로운 함수를 만드는거야. 기본적으로 함수형 프로그래밍에서 제공되어지는데 자바스크립트에서는 제공되어지지 않으나 만들 수 있어.
+```javascript
+function calculate(a,b,c){
+    return a*b+c;
+}
+
+function curry(func){
+    var args = Array.prototype.slice.call(arguments,1);
+    
+    return function(){
+        return func.apply(null, args.concat(Array.prototype.slice.call(arguments)));
+    }
+}
+
+var new_func1 = curry(calculate,1);
+console.log(new_func1(2,3));
+// 1을 고정시킨 new_func1에 2와 3을 인자로 받아서 수행시켜 결과 5를 받아오게 되는거야
+```
+
+<br/>
+
+
+
+#### bind
+
+: 
