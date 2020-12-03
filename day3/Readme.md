@@ -259,3 +259,5 @@ function subClass(obj){
     return child;
 }
 ```
+![example](https://user-images.githubusercontent.com/31160622/100978142-54872e80-3585-11eb-9694-5ea42ee320d9.png)
+
