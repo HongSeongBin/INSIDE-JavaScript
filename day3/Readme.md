@@ -77,6 +77,125 @@ console.log(str);
 
 
 ## Chapter06 객체지향 프로그래밍
+<br/>
+#### 클래스 기반 vs 프로토타입 기반
+
+: 클래스 기반의 언어는 클래스로 객체의 기본적인 형태와 기능을 정의하고, 생성자로 인스턴스를 만들어서 사용할 수 있어. 클래스에 정의된 메서드로 여러가지 기능을 수행할 수 있는거지. 이런 유형의 언어는 모든 인스턴스가 클래스에 정의된 대로 같은 구조이고 보통 런타임에 바꿀수 없어.
+
+반면에 프로토타입 기반의 언어는 객체의 자료구조, 메서드 등을 동적으로 바꿀 수 있어.
+
+-> 그렇기에 장단점이 명확해져. 정확성,안정성,예측성 관점에서는 클래스 기반 언어가 조금 더 좋으나 동적으로 자유롭게 객체의 구조와 동작 방식을 바꿀 수 있다는 장점은 프로토타입 기반 언어가 가지고 있지.
+
+<br/>
 
 
- 
+
+#### 자바스크립트의 함수 객체 프로토타입을 활용한 효율적 프로그래밍
+
+: 자바스크립트에서는 봤듯이 var me = new Person("sungbin"); 이런식으로 new 키워드를 이용해 새로운 객체를 만들 수 있어. 하지만 만약 저 Person이라는 함수 객체 안에 setName이나 getName과 같은 함수가 들어있다 생각을 해봐. 그러면 새로운 객체를 만들어 낼 때 마다 해당 함수들을 위한 공간도 만들어져야하고 그럼 매우 비효율적이자나!!
+-> 함수 객체의 프로토타입을 이용하는거지!! 함수 객체의 프로토타입에 setName이나 getName과 같은 함수를 넣는다면 위의 문제는 해결이 되자너!!
+```javascript
+Function.prototype.method = function(name,func){
+    if(!this.prototype[name]){
+        this.prototype[name] = func;
+    }
+}
+//위의 형태가 더글라스 크락포드가 제시하는 메서드 정의 방법이래 이를 활용한 예제가 아래야
+
+Function.prototype.method = function(name,func){
+    this.prototype[name] = func;
+}
+
+function Person(arg) {
+    this.name = arg;
+}
+
+Person.method("setName", function(value){
+    this.name = value;
+}):
+
+Person.method("getName", function(){
+    return this.name;
+});
+
+var me = new Person("me"):
+var you = new Person("you");
+console.log(me.getName());
+console.log(you.getName());
+```
+해당 코드를 보면 무슨느낌인지 이해가지??
+
+<br/>
+
+
+
+#### 상속
+
+: 자바스크립트의 상속의 종류는 크게 2가지로 볼 수 있으
+
+1. 클래스 기반 전통적인 상속 방식을 흉내내는 거
+2. 클래스 개념 없이 프로토타입으로 상속 구현
+
+<br/>
+
+
+
+#### 프로토타입을 이용한 상속
+
+: 아래의 코드를 이해하면 거의 된거야. 이해했지?
+```javascript
+function create_object(o){
+    function F(){}
+    F.prototype = o;
+    return new F();
+}
+```
+함수 create_object의 인자로 들어오는 객체를 부모로 하는 새로운 객체를 new 를 통해 만든 후 반환해주고 있어. 이렇게 할 경우 클래스의 개념을 사용하지 않고도 상속을 구현할 수 있게 되는거지
+
+<br/>
+
+
+
+#### jQuery의 extend 함수
+
+: 객체의 복사 혹은 여러 객체를 합칠 때 사용해. 이때 주의해야할 것이 있어. 객체의 프로퍼티를 복사하는 과정에서 얕은 복사가 진행이 될 경우 문제가 발생할 수 있는 부분이 있다는 거야. 만약 프로퍼티로 객체를 가지고 있을 경우 얕은 복사 진행시에 문제가 발생해. 알지? 그렇기에 깊은 복사를 하는 것이 일반적이야. extend 함수의 첫번째 인자로 true를 넣어줄 경우 깊은 복사를 진행할 수 있네.
+
+<br/>
+
+
+
+#### extend() 함수를 이용한 확장
+
+: 간단하게 얕은 복사를 진행하는 extend 함수를 만들어서 객체를 확장 해 보겠으
+```javascript
+//create_object 함수 경우 위와 동일하고 불필요한 부분은 생략하겠으
+function extend(obj,prop){
+    if(!prop){prop = obj; obj = this; }
+    for(var i in prop) obj[i] = prop[i];
+    return obj;
+};
+
+var student = create_object(person);
+var added = {
+    setAge : function(age){
+        this.age=age;
+    },
+    getAge : function(){
+        return this.age;
+    }
+};
+
+extend(student,added);
+
+student.setAge(25);
+```
+이런식으로 사용할 수 있게 되는거지!! extend 함수는 사용자에게 유연하게 기능 확장을 할 수 있게 해주는 함수일 뿐만 아니라 상속에서도 자식 클래스를 확장할 때 유용하게 사용된다니까 알아둬~
+
+<br/>
+
+
+
+#### 클래스 기반의 상속
+
+: 
+
