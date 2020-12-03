@@ -437,4 +437,41 @@ console.log(new_func1(2,3));
 
 #### bind
 
-: 
+: 함수형 프로그래밍 방식을 사용한 대표적인 함수래. bind 함수 역시 커링과 같이 사용자가 고정시키고자 하는 인자를 bind()함수를 호출할때 인자로 넘겨주고 반환받은 함수를 호출하면서 나머지 가변 인자를 넣어줄 수 있어. 그리고 bind 함수를 사용하면 this 가 가리키는 객체를 사용자가 정의 해 줄 수 있다는 점도 있지. 아래 코드 한번 봐봐아.
+```javascript
+var print_all = function(args){
+    for(var i in this) console.log(i+" : " + this[i]);
+    for(var i in arguments) console.log(i+" : "+arguments[i]);
+}
+var myobj = {name:'sungbin'};
+
+var myfunc = print_all.bind(myobj);
+myfunc();
+//name : sungbin 만 출력이되지
+
+var myfunc1 = print_all.bind(myobj,'minsoo','who are u');
+myfunc1("na~~~");
+/* name : sungbin
+   0 : minsoo
+   1 : who are u
+   2 : na~~~
+*/
+```
+이처럼 특정 함수에 원하는 객체를 바인딩시켜 새로운 함수를 사용할 때 bind()함수가 사용되어져!
+
+<br/>
+
+
+
+#### 래퍼
+
+: wrapper는 특정 함수를 자신의 함수로 덮어쓰는 것을 말하는거야. 이 wrap 함수의 첫번 째 인자로 원래 함수의 참조를 받을 수 있어서 원래 함수를 실행하고 자신의 로직을 실행하는 게 가능해. wrapper 즉 덮어쓰더라도 사용자는 원래 함수 기능을 잃어버리지 않은 상태로 자신의 로직을 수행할 수 있어야하고 이런 점에서 봤을 때 그래서 첫번째 인자로 원래 함수를 참조할 수 있게 해놨나보다 생각이 드넴. 래퍼는 기존에 제공되는 함수에서 사용자가 원하는 로직을 추가하고 싶을 때 사용할 수 있다네.
+
+<br/>
+
+
+
+#### 반복 함수
+* each : each()함수는 배열의 각 요소 혹은 객체의 각 프로퍼티를 하나씩 꺼내서 차례대로 특정 함수에 인자로 넣어 실행시켜줘
+* map : map()함수는 주로 배열에 많이 이용되고 배열의 각 요소를 꺼내서 사용자 정의 함수를 적용시켜 새로운 값을 얻은 후 새로운 배열에 넣어줘
+* reduce : reduce()는 배열의 각 요소를 하나씩 꺼내서 사용자의 함수를 적용시킨 뒤 그 값을 계속해서 누적시키는 함수야
