@@ -229,3 +229,33 @@ console.log(me.getName());
 
 그렇기에 객체를 반환하는 경우 신중해야해. 보통은 객체를 반환하지 않고 객체의 주요 정보를 새로운 객체에 담아서 반환하는 방법을 이용하는데 만약 꼭 객체가 반환되어야 하는 경우 깊은 복사로 복사본을 만드는 방법을 사용하는게 좋아
 
+<br/>
+
+
+
+### 객체지향 프로그래밍 응용 예제
+
+
+#### 클래스의 기능을 가진 subClass함수
+
+: 코드와 다이아그램을 보면서 이해해
+```javascript
+function subClass(obj){
+    ...
+    
+    var parent = this;
+    var F = function() {};
+    
+    var child = function(){};
+    
+    F.prototype = parent.prototype;
+    child.prototype = new F();
+    child.prototype.constructor = child;
+    child.parent = parent.prototype;
+    child.parent_constructor = parent;
+    
+    .....
+    
+    return child;
+}
+```
