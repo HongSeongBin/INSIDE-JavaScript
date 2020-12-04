@@ -30,3 +30,9 @@
   * jQuery 함수 객체
   * jQuery.prototye 객체
   * jQuery 객체 인스턴스
+![jquery](https://user-images.githubusercontent.com/31160622/101112341-6a95fd00-3620-11eb-8698-b0a165b318e2.png)
+
+ 이런 구조야!! jQuery 객체는 프로토타입 체이닝을 통해 프로토타입 메서드를 호출하는 것이 가능해지지!
+ 
+ jQuery 함수의 가장 기본적인 역할은 new 연산자로 jQuery 객체를 생성하는 것이고 이렇게 생성된 jQuery 객체는 프로토타입 체이닝으로 jQuery.prototype 객체에 포함된 프로토타입 메서드를 호출할 수 있게 되는거야. 또한, jQuery 함수 객체 자신이 메서드를 포함하고 있는 것도 있어. 이러한 jQuery 함수 객체의 메서드는 각각 생성된 jQuery 인스턴스 객체에 특화되지 않고 범용적으로 사용되는 jQuery 코어 메서드로 구성되.
+ 
