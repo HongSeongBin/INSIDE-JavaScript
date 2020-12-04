@@ -207,3 +207,44 @@ $(window).load( function() {
 -> 블록스코프에서 유요한 변수를 만들고 싶다면 let을 사용하면 돼!!
  
  그리고 const란 녀석은 let과 동일한 범위를 가지나 선언과 동시에 할당이 일어나야하고, 재할당이 불가능해!
+ 
+ <br/>
+ 
+ 
+ 
+ #### 자바스크립트 함수의 유효 범위
+ 
+ : 알겠지만 대부분의 프로그래밍 언어에서 블록 내에서 정의된 변수를 블록 외부에서 접근할 수는 없자나. 하지만 자바스크립트는 달라!! 함수기준이거등!! 함수는 자신이 정의된 범위 안에서 정의된 모든 변수 및 함수에 접근할 수 있어. 전역함수는 모든 전역 변수와 전역 함수에 접근할 수 있고 다른 함수내에 정의된 내부함수는 그 함수의 부모 함수에 정의된 모든 변수 및 부모 함수가 접근할 수 있는 모든 다른 변수까 접근가능해.
+ 
+ 전역 변수로 x가 있다고하고 어떤 함수 내부에서 똑같이 x라는 변수를 선언한다면 이 두 x는 달라. 함수 단위이기에 두번 째 x는 그 함수 내에서만 사용하고 살아 있는 변수인거지. 만약 전역에 접근하고 싶다면 window.x 이렇게 할 수가 있겠네
+ 
+ <br/>
+ 
+ 
+ 
+ #### 함수 호이스팅(hoisting)
+ 
+ : 자바스크립트에서 함수의 유효 범위라는 것은 함수 안에서 선언된 모든 변수는 함수 전체에 걸쳐 유효하다는거지. 근데 이 유효 범위의 적용은 변수가 선언되기 전에도 똑같이 적용된다는거야. 이러한 특징을 함수 호이스팅이라고해. 즉, 자바스크립트 함수 안에 있는 모든 변수의 선언은 함수의 맨 처음으로 이동된 것 처럼 동작하는거야.
+ ```javascript
+ var globalNum = 10;     // globalNum을 전역 변수로 선언함.
+
+function printNum() {
+    document.write("지역 변수 globalNum 선언 전의 globalNum의 값은 " + globalNum + "입니다.<br>"); // ①
+    var globalNum = 20; // globalNum을 지역 변수로 선언함. // ②
+    document.write("지역 변수 globalNum 선언 후의 globalNum의 값은 " + globalNum + "입니다.<br>");
+}
+printNum();
+```
+이런 코드가 있다고 생각해보자. 첫번째 write 메서드에서 전역변수 globalNum에 접근할 거라 생각하기 쉬우나 그게아니쥐!! 호이스팅 때문에 코드는 아래처럼 변경이 되어지는거야.
+```javascript
+var globalNum = 10;
+
+function printNum() {
+    var globalNum; // 함수 호이스팅에 의해 변수의 선언 부분이 함수의 맨 처음 부분으로 이동됨.
+    document.write("지역 변수 globalNum 선언 전의 globalNum의 값은 " + globalNum + "입니다.<br>");
+    globalNum = 20;
+    document.write("지역 변수 globalNum 선언 후의 globalNum의 값은 " + globalNum + "입니다.<br>");
+}
+printNum();
+```
+이렇게 말야!
