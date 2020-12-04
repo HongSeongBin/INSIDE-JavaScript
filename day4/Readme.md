@@ -45,13 +45,13 @@
  
  : jQuery의 가장 기본적인 기능은 HTML 문서에서 원하는 DOM 객체를 선택한 후 , 해당 객체의 속성 변경이나 효과 이벤트를 처리하는거 잖아.
  
- ....
+ ```HTML
  
   <div id="myDiv">Hello<div>
   
   <script>alert($("#myDiv").text())</script>
   
-  ....
+  ```
   
   이런식으로 말야. 그럼이게 jQuery 코드에서 어떻게 처리되는건지 한번 보자.
   
