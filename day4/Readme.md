@@ -261,3 +261,20 @@ printNum();
 * 클래스를 사용하여 같은 클래스에 속하는 HTML 요소 모두 선택가능해 ( $(".JQ").CSS("border',"2px solid orange"); )
 * 속성을 사용하여 속성이 조건에 맞는 특정 HTML 요소를 선택할 수도 있어. ( $("img[alt='flower']").attr("src","/examples/images/img_mnoalisa.png"); )
 
+<br/>
+
+
+
+#### 선택한 요소의 저장
+
+: jQuery에서는 선택한 요소들을 변수에 저장하여 사용할 수 있어.
+```javascript
+$(function() {
+    var items = $("li"); // <li>요소를 모두 선택하여 변수 items에 저장함.
+
+    $("button").on("click", function() {
+        $("#len").text("저장된 <li>요소의 총 개수는 " + items.length + "개 입니다.");
+    });
+});
+```
+위 코드를 봐. <li> 요소들을 선택하여 itesm라는 변수에 저장한 후 해당 변수를 사용(items.length)을 하고 있어.
