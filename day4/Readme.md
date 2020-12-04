@@ -37,3 +37,23 @@
  
  jQuery 함수의 가장 기본적인 역할은 new 연산자로 jQuery 객체를 생성하는 것이고 이렇게 생성된 jQuery 객체는 프로토타입 체이닝으로 jQuery.prototype 객체에 포함된 프로토타입 메서드를 호출할 수 있게 되는거야. 또한, jQuery 함수 객체 자신이 메서드를 포함하고 있는 것도 있어. 이러한 jQuery 함수 객체의 메서드는 각각 생성된 jQuery 인스턴스 객체에 특화되지 않고 범용적으로 사용되는 jQuery 코어 메서드로 구성되.
  
+ <br/>
+ 
+ 
+ 
+ #### jQuery의 id 셀렉터 동작
+ 
+ : jQuery의 가장 기본적인 기능은 HTML 문서에서 원하는 DOM 객체를 선택한 후 , 해당 객체의 속성 변경이나 효과 이벤트를 처리하는거 잖아.
+ 
+ ....
+ 
+  <div id="myDiv">Hello<div>
+  
+  <script>alert($("#myDiv").text())</script>
+  
+  ....
+  
+  이런식으로 말야. 그럼이게 jQuery 코드에서 어떻게 처리되는건지 한번 보자.
+  
+  아까 앞에서 설명했듯이 $는 jQuery() 함수를 참조하니까 $("#myDiv")는 jQuery("#myDiv") 함수 호출을 의미해! 
+ 
