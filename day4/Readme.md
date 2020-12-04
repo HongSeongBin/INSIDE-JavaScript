@@ -30,6 +30,7 @@
   * jQuery 함수 객체
   * jQuery.prototye 객체
   * jQuery 객체 인스턴스
+  
 ![jquery](https://user-images.githubusercontent.com/31160622/101112341-6a95fd00-3620-11eb-8698-b0a165b318e2.png)
 
  이런 구조야!! jQuery 객체는 프로토타입 체이닝을 통해 프로토타입 메서드를 호출하는 것이 가능해지지!
