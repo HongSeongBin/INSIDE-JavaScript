@@ -450,7 +450,7 @@ $(function() {
 
 **기존 요소를 포함하는 요소의 추가**
 
-* .wrap() - 선태갛ㄴ 요소를 포함하는 새로운 요소를 추가해. 포함한다는 느낌보다는 음.. 감싼다는 느낌이 더 와닿네.
+* .wrap() - 선택한 요소를 포함하는 새로운 요소를 추가해. 포함한다는 느낌보다는 음.. 감싼다는 느낌이 더 와닿네.
 ```javascipt
 $(function() {
     $("button").on("click", function() {
@@ -462,3 +462,68 @@ $(function() {
 위 코드를 실행시킨 결과는 content라는 클래스를 가진 각각의 요소들에게 그 요소들을 감싸는 div 태그를 씌워줘.
 * .wrapAll - 선택한 모든 요소를 포함하는 새로운 요소를 추가해. 만약 위의 wrap에서 contest라는 클래스를 가진 요소들이 있다면 각각의 요소들에 대해 적용을 해줬으나 이 친구는 그런 상황에서 각각의 요소를 모두 포함하는 요소를 추가한다는거야.
 * .wrapInner() - 선택한 요소에 포함되는 새로운 요소를 추가해. 포함된다는게 음... 그 선택당한 요소 즉 태그안에 새로운 태그를 넣는다는 그런 느낌이야
+
+<br/>
+
+
+
+#### 요소의 복사
+
+: .clone() 이라는 메서드를 사용하면 선택한 요소나 콘텐츠를 복사해서 새로운 걸 생성할 수 있어. 그럼 이 받을 걸로 원하는 곳에 넣거나 이렇게 응용할 수 있겠네
+```javascript
+$(function() {
+    $("button").on("click", function() {
+        // id가 "firstItem"인 요소를 복사하여 id가 "list"인 요소에 추가함.
+        $("#firstItem").clone().appendTo("#list");
+    });
+});
+```
+한마디로 얘를 실행시키면 firstItem이라는 아이디를 가진 녀석은 변화가 없고 다만 이 녀석과 똑같은 녀석을 list라는 아이디를 가진 녀석의 뒷단에 추가를 시켜주는거지
+
+<br/>
+
+
+
+#### 요소의 대체
+
+1. .replaceAll() : 선택한 요소를 지정된 요소로 대체해
+2. .replaceWith() : 선택한 요소를 지정된 요소로 대체하는 것은 똑같은데 느낌이 좀 달라. 그리고 지정된 요소로 대체되어 제거된 기존 요소를 반환도 한다네.
+
+li 태그로 여러개의 리스트가 있다고 가정을 해볼게. 각 태그 들의 id는 다르고 클래스는 같다고 생각해보자.
+
+$("#firstItem").replaceAll(".item"); 이걸 수행하면 모든 리스트들이(클래스가 .item인) 지정한 리트스(아이디가 #firstItem)인 놈으로 바뀌는 거야. 즉 모든 리스트들의 갯수만큼 #firstItem이 따다당 생기는건데 
+
+$(".item").replaceWith($("#firstItem")); 이거의 경우에는 .item 클래스를 가진 애들을 아이디가 firstItem인 애로 바꾸는건데 모든 리스트 갯수만큼이 아닌 다 사라지고 하나만 결과적으로 남아.
+
+<br/>
+
+
+
+#### 요소의 삭제
+
+1. .remove() : 선택한 요소를 DOM 트리에서 삭제해. 이때 삭제되는 요소오 연관된 jQuery 데이터나 이벤트도 모두 함께 삭제된데.
+```javascript
+$(function() {
+    $("button").on("click", function() {
+        // class가 "content"인 요소 중에서 class가 각각 "first", "second"인 요소를 모두 삭제함.
+        $(".content").remove(".first, .second");
+    });
+});
+```
+이런식으로 쓰는거
+2. .detach() : remove 와 삭제하는 측면에서는 동일하나 삭제되는 요소와 관련된 jQuery 데이터나 이벤트는 삭제되지않고 유지된다고하네. 그리고 deatch() 메소드가 지운 녀석들을 반환하는데 걔네들을 이용하면 다시 복구할 수도 있어
+```javascript
+$(function() {
+    var data;
+    $("#detachBtn").on("click", function() {
+        data = $(".content").detach(); // class가 "content"인 요소를 모두 삭제함.
+    });
+    $("#restoreBtn").on("click", function() {
+        $("#container").append(data);  // detach() 메소드로 삭제되었던 모든 요소를 다시 추가함.
+    });
+});
+```
+이렇게 말이야
+3. .empty() : empty()메소드는 선택한 요소의 자식 요소를 모두 삭제해. 이때 이제 remove나 deatch와 다른 점은 선택된 요소 그 자체는 삭제되지 않는다는 거야!! 
+4. .unwrap() : 이 친구는 empty와는 반대로 선택한 요소의 부모 요소를 삭제해
+
