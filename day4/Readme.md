@@ -248,3 +248,16 @@ function printNum() {
 printNum();
 ```
 이렇게 말야!
+
+<br/>
+
+
+
+#### CSS 선택자
+
+: jQuery 에서는 CSS 선택자를 사용하여 HTML요소를 선택할 수 있어. 
+* 태그 이름을 사용해서 같은 태그 이름을 가지는 HTML 요소를 모두 선택할 수 있어. ( $("span").css("fontSize","28px"); ) 
+* id를 사용해서 특정 HTML 요소 선택할 수 이써 ( $("#JQ").CSS("border',"2px solid orange"); ) 
+* 클래스를 사용하여 같은 클래스에 속하는 HTML 요소 모두 선택가능해 ( $(".JQ").CSS("border',"2px solid orange"); )
+* 속성을 사용하여 속성이 조건에 맞는 특정 HTML 요소를 선택할 수도 있어. ( $("img[alt='flower']").attr("src","/examples/images/img_mnoalisa.png"); )
+
