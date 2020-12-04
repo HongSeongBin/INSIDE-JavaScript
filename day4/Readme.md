@@ -89,6 +89,7 @@
  
  : jQuery.find()는 jQuery 함수 객체 내에서 포함된 메서드로 jQuery의 셀렉터 기능을 처리하는 중요한 함수야. 내부 돌아가는거에 대해선 이해만하고 넘어가자. 다시 보고프면 p241 고고
    ( jQuery.find() 코드 내에서 나온 조건문을 보다 알았어. javascript에서 조건절 안의 -1 은 true야 0이 false, 0을 제외한 정수는 true)
+ 
  <br/>
  
  
