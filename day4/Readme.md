@@ -102,8 +102,6 @@
  
  ## jQuery 
  
- 참고 : http://www.tcpschool.com/jquery/intro
- 
  <br/>
  
  
@@ -383,5 +381,63 @@ $(function() {
 ```
 이렇게 말이야!! 
 
+<br/>
 
+
+
+#### .attr() 메소드
+
+: .attr()메소드는 선택한 요소의 특정 속성값을 반환하거나 설정하기 위해 사용해.
+```javascript
+$(function() {
+    $("button").on("click", function() {
+        // <img>요소의 src 속성값을 읽어오는 getter 메소드
+      var imgSrc = $("img").attr("src");
+        // <img>요소의 src 속성값을 새로운 값으로 설정하는 setter 메소드
+      $("img").attr("src", "/examples/images/img_flag.png");
+    });
+});
+```
+이런식으로 사용할 수 있다는 거지. 저 imgSrc는 출력하면 저 src속성의 값이 출력 되겠네
+
+<br/>
+
+
+
+#### 대표적인 getter 메소드와 setter 메소드
+
+* .html() : 해당 요소의 HTML 콘텐츠를 반환하거나 설정
+* .text() : 해당 요소의 텍스트 콘텐츠를 반환하거나 설정
+* .attr() : 해당 요소의 명시된 속성의 속성값을 반환하거나 설정
+* .val() : form태그 요소의 값을 반환하거나 설정
+
+<br/>
+
+
+
+#### 요소의 추가
+
+: jQuery는 새로운 요소나 컨텐츠를 손쉽게 추가할 수 있도록 여러 메소드를 제공해줘
+
+**기존 요소의 내부에 추가**
+* .append() - 선택한 요소의 마지막에 새로운 요소나 콘텐츠를 추가
+```javascript
+$(function() {
+    $("button").on("click", function() {
+        $("#list").append("<li>새로 추가된 아이템이에요!</li>");
+    });
+});
+```
+* .prepend() - 선택한 요소의 처음에 새로운 요소나 컨텐츠를 추가 (위에 예제에서 그냥 맨위에 추가된다고 생각해)
+* .appendTo() - 선택한 요소를 해당 요소의 마지막에 삽입해 
+```javascript
+$(function() {
+    $("#firstBtn").on("click", function() {
+        // id가 "list"인 요소의 맨 마지막에 id가 "firstItem"인 요소를 추가함.
+        $("#firstItem").appendTo("#list");
+    });
+});
+```
+이렇게면 id가 #firstItem인 녀석이 id가 list인 녀석의 마지막에 추가되는거지. 추가된다기보단 옮겨가는 느낌이던뎀
+* .prependTo() - 선택한 요소를 해당 요소의 처음에 삽입하는 거
 
